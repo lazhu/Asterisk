@@ -32,11 +32,8 @@ $sql = array(
 	'db' => 'asterisk'
 );
 
-// Router key value
-$key_value = $exten;
-
-// Router key description
-$key_descr = "exten";
+// Router key
+$key = $exten;
 
 // Hangup virtual extension
 $hangup = 999;
@@ -139,16 +136,15 @@ $InfoOptions = array(
 );
 
 $RouterOptions = array(
-	'key' => $key_value,
-	'key_descr' => $key_descr,
+	'key' => $key,
 	'info_options' => $InfoOptions,
 	'channel_options' => $ChannelOptions
 );
 
 $InfoRouter = new Router($RouterOptions);
 $InfoRoute = $InfoRouter->setRoute("Info");
-$info = $InfoRoute->getInfo();
 
+$info = $InfoRoute->getInfo();
 $InfoActions = array($info->setAGI());
 $ChannelRouterOptions = array_merge($RouterOptions, $info->setChannelRoute());
 

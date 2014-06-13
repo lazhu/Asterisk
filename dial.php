@@ -1,9 +1,9 @@
-#!/usr/local/bin/php -q
+#!/usr/bin/php -q
 <?php
 require('config.inc.php');
 foreach ($actions as $action){
 	foreach($action as $cmd){
-		$agi->$cmd['app'](implode(" ", $cmd['opt']));
+		var_dump($cmd);//$agi->$cmd['app'](implode(" ", $cmd['opt']));
 	}
 }
 ?>
