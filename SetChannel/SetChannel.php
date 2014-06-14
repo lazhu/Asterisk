@@ -24,14 +24,13 @@ abstract class SetChannel {
 		$sql = new sql(array_merge($this->sql, $this->data));
 		$exten = $sql->getExten($this->exten);
 		$this->channel = array_merge($this->channel, array(
-			'trunk' => NULL,
 			'exten' => $exten[0]
 		));
 	}
 
 	public function setChannelNul(){
 		$this->channel = array_merge($this->channel, array(
-			'trunk' => NULL,
+			'options' => NULL,
 			'exten' => NULL
 		));
 	}
