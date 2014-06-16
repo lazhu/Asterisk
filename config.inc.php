@@ -18,7 +18,7 @@ require_once('SetInfo/SetInfoOut.php');
 $agi = new AGI;
 
 // Dialed extension passed from Asterisk
-$exten = $agi->request[agi_dnid];
+$exten = $agi->request[agi_extension];
 
 // CallerID passed from Asterisk
 $cid = $agi->request[agi_calleridname];
