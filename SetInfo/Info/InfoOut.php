@@ -11,7 +11,7 @@ class InfoOut extends Info {
 			),
 			array(
 				'cmd' => 'set_variable',
-				'args' => array("recname", $this->rec_file['file'])
+				'args' => array("recname", $this->rec_file['name'])
 			),
 			array(
 				'cmd' => 'exec',
