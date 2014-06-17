@@ -76,8 +76,8 @@ $info_pattern_length = array(
 // Voice record settings
 $record = array(
 	'file' => array(
-		'dir' => "/home/rec/" . strftime("%C%y/%m/%d"), // Directory for records
-		'file' => implode("-", array(strftime("%H%M"), $cid, $exten)) // File name
+		'dir' => "/home/rec/" . strftime("%C%y/%m/%d"),
+		'name' => strftime("%H%M")
 	),
 	'options' => array(
 		'hook' => "AUDIOHOOK_INHERIT(MixMonitor)=yes", // Keep recording through transfers

@@ -5,8 +5,8 @@ require_once('Info/InfoOut.php');
 class SetInfoOut extends SetInfo {
 
 	public function getInfo(){
-		$this->setInfoOut();
 		$this->setPerson();
+		$this->setInfoOut();
 		return new InfoOut($this->info);
 	}
 

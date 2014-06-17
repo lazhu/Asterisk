@@ -7,7 +7,8 @@ class SetInfoPin extends SetInfo {
 	public function getInfo(){
 		$this->setInfoPin();
 		$this->setPerson();
-		return new InfoGen($this->info);
+		$this->setInfoOut();
+		return new InfoOut($this->info);
 	}
 
 	public function __construct($options){

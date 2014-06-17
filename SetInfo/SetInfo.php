@@ -5,7 +5,6 @@ use AsteriskMysql as sql;
 abstract class SetInfo {
 
 	protected $exten;
-	protected $cid;
 	protected $info;
 	protected $pin;
 	protected $length;
@@ -44,6 +43,7 @@ abstract class SetInfo {
 	}
 
 	public function setInfoOut(){
+		$this->record['file']['name'] .= "-" . $this->info['person'] . "-" . $this->exten;
 		$this->info['rec_file'] = $this->record['file'];
 		$this->info['rec_opt'] = $this->record['options'];
 	}
@@ -55,14 +55,11 @@ abstract class SetInfo {
 			$result = $sql->getPerson($this->pin);
 			$this->info['person'] = $result[0];
 		}
-		else{
-			$this->info['person'] = $this->cid;
-		}
 	}
 
 	public function __construct($options){
 		$this->exten = $options['exten'];
-		$this->cid = $options['cid'];
+		$this->info['person'] = $options['cid'];
 		$this->sql = $options['sql'];
 		$this->length = $options['length'];
 		$this->record = $options['record'];
