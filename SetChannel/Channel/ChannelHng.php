@@ -6,8 +6,8 @@ class ChannelHng extends Channel {
 	public function setAGI(){
 		return array(
 			array(
-				'app' => 'Hangup',
-				'opt' => ''
+				'cmd' => 'Hangup',
+				'args' => ''
 			)
 		);
 	}

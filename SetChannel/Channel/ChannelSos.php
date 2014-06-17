@@ -6,8 +6,8 @@ class ChannelSos extends Channel {
 	public function setAGI(){
 		return array(
 			array(
-				'app' => 'exec',
-				'opt' => array("Dial", $this->trunk . substr($this->exten, 1) . $this->options)
+				'cmd' => 'exec',
+				'args' => array("Dial", $this->trunk . substr($this->exten, 1) . $this->options)
 			)
 		);
 	}

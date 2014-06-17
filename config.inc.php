@@ -38,8 +38,6 @@ $key = $exten;
 // Hangup virtual extension
 $hangup = 999;
 
-/******************************/
-
 /*** Channel routing config ***/
 
 // Pattern length for outgoing calls
@@ -66,8 +64,6 @@ $channel_rules = array(
 		'Out' => 'strlen($key) == 10', // Outgoing call
 		'Int' => 'strlen($key) == 3' // Internal call
 );
-
-/***************************/
 
 /*** Info routing config ***/
 
@@ -100,58 +96,7 @@ $info_rules = array(
 	'Pin' => 'strlen($key) > 10', // Pinned call
 	'Spd' => '$key[0] == 3', // Speed dialed call
 	'Out' => 'strlen($key) == 10', // Outgoing call
-	'Int' => 'strlen($key) == 3 || $key[0] == 6' // Internal call
+	'Int' => 'strlen($key) == 3 || $key[0] == 6' // Internal or SOS call
 );
 
-/*****************************/
-
-/*** Non-configurable part ***/
-
-$ChannelOptions = array(
-	'exten' => $exten,
-	'length' => $channel_pattern_length,
-	'fax' => $faxname,
-	'dial_options' => $dial_options,
-	'sql' => $sql,
-	'hangup' => $hangup,
-	'trunk_tables' => $trunk_tables,
-	'trunk_cols' => $trunk_cols,
-	'exten_tables' => $exten_tables,
-	'exten_cols' => $exten_cols,
-	'rules' => $channel_rules
-);
-
-$InfoOptions = array(
-	'exten' => $exten,
-	'cid' => $cid,
-	'sql' => $sql,
-	'length' => $info_pattern_length,
-	'record' => $record,
-	'hangup' => $hangup,
-	'info_tables' => $info_tables,
-	'person_cols' => $person_cols,
-	'pin_cols' => $pin_cols,
-	'spd_cols' => $spd_cols,
-	'rules' => $info_rules
-);
-
-$RouterOptions = array(
-	'key' => $key,
-	'info_options' => $InfoOptions,
-	'channel_options' => $ChannelOptions
-);
-
-$InfoRouter = new Router($RouterOptions);
-$InfoRoute = $InfoRouter->setRoute("Info");
-
-$info = $InfoRoute->getInfo();
-$InfoActions = array($info->setAGI());
-$ChannelRouterOptions = array_merge($RouterOptions, $info->setChannelRoute());
-
-$ChannelRouter = new Router($ChannelRouterOptions);
-$ChannelRoute = $ChannelRouter->setRoute("Channel");
-$channel = $ChannelRoute->getChannel();
-$ChannelActions = array($channel->setAGI());
-
-$actions = array_merge($InfoActions, $ChannelActions);
 ?>

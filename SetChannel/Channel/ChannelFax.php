@@ -6,8 +6,8 @@ class ChannelFax extends Channel {
 	public function setAGI(){
 		return array(
 			array(
-				'app' => 'exec',
-				'opt' => array("ReceiveFax", $this->fax)
+				'cmd' => 'exec',
+				'args' => array("ReceiveFax", $this->fax)
 			)
 		);
 	}

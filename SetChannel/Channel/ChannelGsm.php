@@ -6,8 +6,8 @@ class ChannelGsm extends Channel {
 	public function setAGI(){
 		return array(
 			array(
-				'app' => 'exec_goto',
-				'opt' => array("incoming,s,1")
+				'cmd' => 'exec_goto',
+				'args' => array("incoming,s,1")
 			)
 		);
 	}

@@ -6,8 +6,8 @@ class ChannelInt extends Channel {
 	public function setAGI(){
 		return array(
 			array(
-				'app' => 'exec',
-				'opt' => array("Dial", $this->exten . $this->options)
+				'cmd' => 'exec',
+				'args' => array("Dial", $this->exten . $this->options)
 			)
 		);
 	}
