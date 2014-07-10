@@ -1,0 +1,45 @@
+<html>
+
+<head>
+<!-- Set style -->
+<style type="text/css">
+	.green {background-color:green;}
+	.red {background-color:red;}
+	.yellow {background-color:yellow};
+</style>
+</head>
+
+<body>
+<!-- Display table -->
+<table border="1" cellspacing="0" cellpadding="0" width="25%">
+<?php
+foreach ($extensions as $extension){
+	foreach ($extension as $key => $exten){
+		if($exten['state'] == "IDLE" ||	$exten['state'] == "INUSE"){
+			echo '<tr class="green">';
+		}
+		elseif($exten['state'] == "OFFLINE" || $exten['state'] == "UNKNOWN"){
+			echo '<tr class="red">';
+		}
+		else{
+			echo '<tr class="yellow">';
+		}
+?>
+				<td height="20" width="20%" align="center">
+					<?php echo $exten['exten']; ?>
+				</td>
+				<td height="20" width="40%" align="center">
+					<?php echo $exten['callerid']; ?>
+				</td>
+				<td height="20" width="40%" align="center">
+					<?php echo $exten['state']; ?>
+				</td>
+			</tr>
+<?php
+	}
+}
+?>
+</table>
+</body>
+
+</html>

@@ -1,7 +1,6 @@
 <?php
 class Router {
 
-	protected $rules;
 	protected $key;
 	protected $Info;
 	protected $Channel;
