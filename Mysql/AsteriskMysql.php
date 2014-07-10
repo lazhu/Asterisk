@@ -57,11 +57,11 @@ class AsteriskMysql extends MysqlData {
 		));
 	}
 
-	public function setExten(){
+	public function setExten($extension){
 		$this->query_end = " VALUES (?, ?, ?, ?)";
 		$this->insertQuery($this->args['tables'], $this->args['cols']);
 		$this->sth->execute(array(
-			$this->extension,
+			$extension,
 			$this->cid,
 			'SIP/' . $this->name,
 			$this->secret
