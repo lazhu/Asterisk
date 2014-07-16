@@ -30,21 +30,6 @@ $MysqlOptions = array(
 	'db' => 'asterisk'
 );
 
-/* Shift8 config */
-// Shift8 Main Options
-$S8MO = array(
-	'ajam' => 'http://223.254.254.5:8088/asterisk/mxml',
-	'username' => 'admin',
-	'secret' => 'power'
-);
-// Shift8 Processor Options
-$S8PO = array(
-	'hostname' => 'localhost',
-	'username' => 'asterisk',
-	'password' => 'asterisk',
-	'database' => 'asterisk'
-);
-
 $PAMIOptions = array(
     'log4php.properties' => __DIR__ . '/log4php.properties',
     'host' => '223.254.254.5',

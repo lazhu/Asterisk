@@ -23,8 +23,7 @@
  */
 include('peer.inc.php'); // Config
 require_once('AsteriskMysql.php'); // AsteriskMysql class
-require_once 'Shift8/library/Shift8.php'; // Shift8 main library
-require_once 'Shift8/library/Queue/Processor/Mysql.php'; // Shift8 MySQL queue processor
+require_once('SSHClient.php');
 
 /* Get variables from the form */
 $extension = $_REQUEST["exten"];
@@ -32,7 +31,7 @@ $name = $_REQUEST["name"];
 $cid = $_REQUEST["cid"];
 $secret = md5($cid);
 
-/* Update "sippeers" table */
+/* Update "sip_peers" table */
 $peer = array(
 	'name' => $name,
 	'cid' => $cid,
@@ -43,33 +42,15 @@ $PeerOptions['peer'] = $peer;
 $SipPeer = new AsteriskMysql($PeerOptions);
 $SipPeer->setPeer();
 
-
-/* Update "sipglobals.conf" file */
-array_push ($UCOptions, $extension, 'SIP/' . $name);
-
-$UpdateConfig = new Shift8 ($S8MO['ajam'], $S8MO['username'], $S8MO['secret']);
-
-$UpdateConfig->setQueueProcessor(
-	new Shift8_Queue_Processor_Mysql($S8PO['hostname'], $S8PO['username'], $S8PO['password'], $S8PO['database'])
-);
-
-if( !($queue_id = $UpdateConfig->addCommandToQueue('updateConfig', $UCOptions)) ) {
-	echo "Unable to add the command to the queue\n";
-	return;
-}
-
-if( !$UpdateConfig->login() ) {
-	echo "Unable to connect to remote asterisk server\n";
-	return;
-}
-
-$UpdateConfig->processCommandQueue();
-$UpdateConfig->logoff();
-
 /* Update "extensions" table */
 $ExtenOptions['peer'] = $peer;
 $SipExtension = new AsteriskMysql($ExtenOptions);
 $SipExtension->setExten($extension);
+
+/* Update hints */
+$ssh = new SSHClient($SSHOptions);
+$ssh->run_cmd("echo \"exten => $extension,hint,SIP/$name\" >> $hints");
+$ssh->run_cmd("asterisk -rx \"core reload\"");
 
 /* Display peer */
 $exten = $SipExtension->getExten($extension);

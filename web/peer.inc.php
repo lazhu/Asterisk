@@ -15,10 +15,14 @@ $ExtenOptions = array_merge($MysqlOptions, array(
 	)
 ));
 
-$UCOptions = array(
-	'sipglobals.conf',
-	'sipglobals.conf',
-	'append',
-	'globals'
+$SSHOptions = array(
+	'host' => '223.254.254.5',
+	'port' => 22,
+	'crypt' => array('hostkey' => 'ssh-rsa'),
+	'user' => 'php',
+	'pub' => 'key.pub',
+	'priv' => 'key'
 );
+
+$hints = "/usr/local/etc/asterisk/hints.conf";
 ?>
