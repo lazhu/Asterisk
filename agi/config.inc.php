@@ -18,10 +18,10 @@ require_once('SetInfo/SetInfoOut.php');
 $agi = new AGI;
 
 // Dialed extension passed from Asterisk
-$exten = $agi->request[agi_extension];
+$exten = $agi->request['agi_extension'];
 
 // CallerID passed from Asterisk
-$cid = $agi->request[agi_calleridname];
+$cid = $agi->request['agi_calleridname'];
 
 // MySQL connection settings
 $sql = array(

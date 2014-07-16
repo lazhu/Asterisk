@@ -52,7 +52,7 @@ $actions = array_merge($InfoActions, $ChannelActions);
 
 foreach ($actions as $action){
 	foreach($action as $cmd){
-		$agi->$cmd['cmd'](implode(" ", $cmd['args']));
+		call_user_func_array(array($agi, $cmd['cmd']), $cmd['args']);
 	}
 }
 ?>
