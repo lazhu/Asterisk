@@ -6,7 +6,7 @@ class InfoGen extends Info {
 	public function setAGI(){
 		return array(
 			array(
-				'cmd' => 'set_variable',
+				'cmd' => 'setVariable',
 				'args' => array("person", $this->person)
 			)
 		);

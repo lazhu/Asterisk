@@ -6,8 +6,8 @@ class ChannelOut extends Channel {
 	public function setAGI(){
 		return array(
 			array(
-				'cmd' => 'exec',
-				'args' => array("Dial", $this->trunk . $this->exten . $this->options)
+				'cmd' => 'dial',
+				'args' => array($this->trunk . $this->exten, $this->options)
 			)
 		);
 	}

@@ -7,7 +7,7 @@ class ChannelHng extends Channel {
 		return array(
 			array(
 				'cmd' => 'Hangup',
-				'args' => ''
+				'args' => array()
 			)
 		);
 	}

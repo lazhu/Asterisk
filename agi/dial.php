@@ -6,9 +6,9 @@ $ChannelOptions = array(
 	'exten' => $exten,
 	'length' => $channel_pattern_length,
 	'fax' => $faxname,
+	'hangup' => $hangup,
 	'dial_options' => $dial_options,
 	'sql' => $sql,
-	'hangup' => $hangup,
 	'trunk_tables' => $trunk_tables,
 	'trunk_cols' => $trunk_cols,
 	'exten_tables' => $exten_tables,
@@ -52,7 +52,7 @@ $actions = array_merge($InfoActions, $ChannelActions);
 
 foreach ($actions as $action){
 	foreach($action as $cmd){
-		call_user_func_array(array($agi, $cmd['cmd']), $cmd['args']);
+		call_user_func_array(array($pagiClient, $cmd['cmd']), $cmd['args']);
 	}
 }
 ?>

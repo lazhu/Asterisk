@@ -8,7 +8,12 @@ class SetInfoPin extends SetInfo {
 		$this->setInfoPin();
 		$this->setPerson();
 		$this->setInfoOut();
-		return new InfoOut($this->info);
+		if($this->exten == $this->hangup){
+			return new InfoGen($this->info);
+		}
+		else{
+			return new InfoOut($this->info);
+		}
 	}
 
 	public function __construct($options){

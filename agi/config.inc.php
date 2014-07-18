@@ -1,5 +1,4 @@
 <?php
-require_once('phpagi.php');
 require_once('Router.php');
 require_once('SetChannel/SetChannelInt.php');
 require_once('SetChannel/SetChannelOut.php');
@@ -12,16 +11,23 @@ require_once('SetInfo/SetInfoSpd.php');
 require_once('SetInfo/SetInfoInt.php');
 require_once('SetInfo/SetInfoOut.php');
 
+require_once('log4php/Logger.php');
+require_once('PAGI/Autoloader/Autoloader.php');
+PAGI\Autoloader\Autoloader::register();
+use PAGI\Client\Impl\ClientImpl as PagiClient;
+
 /*** General config ***/
 
-// AGI object
-$agi = new AGI;
+// Create PAGI client
+$pagiClientOptions = array(
+	'log4php.properties' => __DIR__ . '/log4php.properties',
+);
+$pagiClient = PagiClient::getInstance($pagiClientOptions);
 
-// Dialed extension passed from Asterisk
-$exten = $agi->request['agi_extension'];
-
-// CallerID passed from Asterisk
-$cid = $agi->request['agi_calleridname'];
+// Get channel variables
+$chanVars = $pagiClient->getChannelVariables();
+$exten = $chanVars->getDNIS();
+$cid = $chanVars->getCallerIdName();
 
 // MySQL connection settings
 $sql = array(
@@ -47,7 +53,7 @@ $channel_pattern_length = 2;
 $faxname = "/mnt/fax/Inbox/" . strftime("%C%y%m%d-%H%M") . ".tif";
 
 // Dial options
-$dial_options = ",60,tT";
+$dial_options = array(60,'tT');
 
 // Channel data tables and columns
 $trunk_tables = array("trunks");
@@ -57,7 +63,7 @@ $exten_cols = array("name");
 
 // Routing rules (top to bottom checked)
 $channel_rules = array(
-		'Hng' => '$key == 999', // Hangup
+		'Hng' => '$key == $hangup', // Hangup
 		'Fax' => '$key == 113', // Incoming fax
 		'Sos' => '$key[0] == 6', // SOS call
 		'Gsm' => '$key[0] == 5', // Call from GSM

@@ -6,20 +6,20 @@ class InfoOut extends Info {
 	public function setAGI(){
 		return array(
 			array(
-				'cmd' => 'set_variable',
+				'cmd' => 'setVariable',
 				'args' => array("person", $this->person)
 			),
 			array(
-				'cmd' => 'set_variable',
+				'cmd' => 'setVariable',
 				'args' => array("recname", $this->rec_file['name'])
 			),
 			array(
 				'cmd' => 'exec',
-				'args' => array("MixMonitor", implode("/", $this->rec_file) . $this->rec_opt['format'])
+				'args' => array("MixMonitor", array(implode("/", $this->rec_file) . $this->rec_opt['format']))
 			),
 			array(
 				'cmd' => 'exec',
-				'args' => array("Set", $this->rec_opt['hook'])
+				'args' => array("Set", array($this->rec_opt['hook']))
 			)
 		);
 	}

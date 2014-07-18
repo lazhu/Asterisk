@@ -7,6 +7,7 @@ class Router {
 
 	public function setRoute($dir){
 		$key = $this->key;
+		$hangup = $this->{$dir}['hangup'];
 		$this->{$dir}['exten'] = $key;
 		foreach($this->{$dir}['rules'] as $route => $rule){
 			if(eval("return $rule;") === TRUE){
@@ -14,7 +15,7 @@ class Router {
 				return new $result($this->{$dir});
 			}
 		}
-		$this->key = $this->{$dir}['hangup'];
+		$this->key = $hangup;
 		return $this->setRoute($dir);
 	}
 
