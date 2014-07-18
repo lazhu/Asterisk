@@ -11,8 +11,7 @@ require_once('SetInfo/SetInfoSpd.php');
 require_once('SetInfo/SetInfoInt.php');
 require_once('SetInfo/SetInfoOut.php');
 
-require_once('log4php/Logger.php');
-require_once('PAGI/Autoloader/Autoloader.php');
+require_once('vendor/autoload.php');
 PAGI\Autoloader\Autoloader::register();
 use PAGI\Client\Impl\ClientImpl as PagiClient;
 

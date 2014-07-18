@@ -1,0 +1,10 @@
+{
+	"require": {
+		"marcelog/pagi": "dev-master"
+	},
+	"repositories": [
+	{
+		"type": "pear",
+		"url": "http://pear.apache.org/log4php/"
+	}]
+}
