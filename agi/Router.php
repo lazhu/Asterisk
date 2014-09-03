@@ -1,25 +1,23 @@
 <?php
 class Router {
 
-	protected $Info;
-	protected $Channel;
+	protected $options;
 
 	public function setRoute($dir){
-		$key = $this->{$dir}['exten'];
-		$hangup = $this->{$dir}['hangup'];
-		foreach($this->{$dir}['rules'] as $route => $rule){
+		$key = $this->options['exten'];
+		$hangup = $this->options['hangup'];
+		foreach($this->options['rules'] as $route => $rule){
 			if(eval("return $rule;") === TRUE){
 				$result = "Set" . $dir . $route;
-				return new $result($this->{$dir});
+				return new $result($this->options);
 			}
 		}
-		$this->{$dir}['exten'] = $hangup;
+		$this->options['exten'] = $hangup;
 		return $this->setRoute($dir);
 	}
 
 	public function __construct($options){
-		$this->Info = $options['info_options'];
-		$this->Channel = $options['channel_options'];
+		$this->options = $options;
 	}
 }
 ?>
