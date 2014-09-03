@@ -37,9 +37,6 @@ $sql = array(
 	'db' => 'asterisk'
 );
 
-// Router key
-$key = $exten;
-
 // Hangup virtual extension
 $hangup = 999;
 
