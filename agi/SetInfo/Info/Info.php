@@ -7,8 +7,8 @@ abstract class Info {
 	protected $rec_file;
 	protected $rec_opt;
 
-	public function setChannelRoute(){
-		return array('key' => $this->exten);
+	public function setExten(){
+		return $this->exten;
 	}
 
 	public function __construct($info){

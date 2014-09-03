@@ -3,7 +3,7 @@
 require('config.inc.php');
 
 $ChannelOptions = array(
-	'exten' => $exten,
+	'exten' => &$exten,
 	'length' => $channel_pattern_length,
 	'fax' => $faxname,
 	'hangup' => $hangup,
@@ -17,7 +17,7 @@ $ChannelOptions = array(
 );
 
 $InfoOptions = array(
-	'exten' => $exten,
+	'exten' => &$exten,
 	'cid' => $cid,
 	'sql' => $sql,
 	'length' => $info_pattern_length,
@@ -31,19 +31,17 @@ $InfoOptions = array(
 );
 
 $RouterOptions = array(
-	'key' => $key,
 	'info_options' => $InfoOptions,
 	'channel_options' => $ChannelOptions
 );
 
 $InfoRouter = new Router($RouterOptions);
 $InfoRoute = $InfoRouter->setRoute("Info");
-
 $info = $InfoRoute->getInfo();
 $InfoActions = array($info->setAGI());
-$ChannelRouterOptions = array_merge($RouterOptions, $info->setChannelRoute());
+$exten = $info->setExten();
 
-$ChannelRouter = new Router($ChannelRouterOptions);
+$ChannelRouter = new Router($RouterOptions);
 $ChannelRoute = $ChannelRouter->setRoute("Channel");
 $channel = $ChannelRoute->getChannel();
 $ChannelActions = array($channel->setAGI());
