@@ -14,6 +14,7 @@ class Router {
 					'callerid' => $callerid,
 					'context' => $context,
 					'trunk' => $calltype['trunk'],
+					'timeout' => $timeout,
 					'dial_options' => $dial_options
 				);
 				return new $route($args);

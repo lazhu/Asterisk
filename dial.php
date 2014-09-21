@@ -13,7 +13,7 @@ $contextOptions = array(
 	'args' => $asterisk_request
 );
 $context = new Context($contextOptions);
-
+$args = $context->getArgs();
 $routerOptions = array(
 	'args' => $context->getArgs(),
 	'calltypes' => $context->getCalltypes()

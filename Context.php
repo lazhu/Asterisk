@@ -5,12 +5,26 @@ class Context {
 	protected $args;
 
 	public function getArgs(){
-		$query = "SELECT * FROM args WHERE context = ?";
+		$query = "SELECT hangup, int_length, ext_length, fax, timeout, dial_options FROM args WHERE context = ?";
 		$args = $this->sql->select(array(PDO::FETCH_ASSOC), 'fetch', $query, array($this->args['context']));
-		foreach (array('fax', 'sos', 'gsm') as $i){
-			$args[$i] = explode(",", $args[$i]);
+		$patterns['sos'] = $this->getSosPatterns();
+		$patterns['gsm'] = $this->getGsmPatterns();
+		$args = array_merge($args, $patterns);
+		return array_merge ($this->args, $args);
+	}
+
+	public function getSosPatterns(){
+		$query = "SELECT pattern FROM sos";
+		return $this->sql->multiselect(array(PDO::FETCH_NUM), 'fetch', $query);
+	}
+
+	public function getGsmPatterns(){
+		$query = "SELECT provider, pattern FROM gsm";
+		$data = $this->sql->select(array(PDO::FETCH_ASSOC), 'fetchAll', $query);
+		foreach ($data as $i){
+			$result[$i['provider']][] = $i['pattern'];
 		}
-		return array_merge($this->args, $args);
+		return $result;
 	}
 
 	public function getCalltypes(){
