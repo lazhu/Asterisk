@@ -3,6 +3,7 @@
 require_once('Router.php');
 require_once('config.inc.php');
 require_once('Context.php');
+require_once('Patterns.php');
 require_once('SetExt.php');
 require_once('data/MysqlClient.php');
 
@@ -12,10 +13,16 @@ $contextOptions = array(
 	'sql' => $mysql,
 	'args' => $asterisk_request
 );
+
+$patternsOptions = array(
+	'sql' => $mysql
+);
+
 $context = new Context($contextOptions);
+$patterns = new Patterns($patternsOptions);
 $args = $context->getArgs();
 $routerOptions = array(
-	'args' => $context->getArgs(),
+	'args' => array_merge($context->getArgs(), $patterns->getSosPatterns(), $patterns->getGsmPatterns()),
 	'calltypes' => $context->getCalltypes()
 );
 $router = new Router($routerOptions);
