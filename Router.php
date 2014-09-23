@@ -6,18 +6,10 @@ class Router {
 
 	public function setRoute(){
 		extract($this->args);
-		foreach($this->calltypes as $calltype){
-			if(eval("return {$calltype['rule']};") === TRUE){
-				$route = "Set" . $calltype['calltype'];
-				$args = array(
-					'dnis' => $dnis,
-					'callerid' => $callerid,
-					'context' => $context,
-					'trunk' => $calltype['trunk'],
-					'timeout' => $timeout,
-					'dial_options' => $dial_options
-				);
-				return new $route($args);
+		foreach($this->calltypes as $i){
+			if(eval("return {$i['rule']};") === TRUE){
+				$route = "Set" . $i['calltype'];
+				return new $route($this->args);
 			}
 		}
 		$this->args['dnis'] = $hangup;
@@ -26,6 +18,7 @@ class Router {
 
 	public function __construct($options){
 		$this->args = $options['args'];
+		$this->args['sql'] = $options['sql'];
 		$this->calltypes = $options['calltypes'];
 	}
 }

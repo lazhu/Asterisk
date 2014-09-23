@@ -1,29 +1,31 @@
 <?php
+require_once('Patterns.php');
+require_once('Trunks.php');
 class SetExt {
 
-	protected $dnis;
-	protected $callerid;
-	protected $context;
+	protected $args;
 	protected $trunk;
-	protected $timeout;
-	protected $dial_options;
 
 	public function setAGI(){
 		return array(
 			array(
 				'cmd' => 'dial',
-				'args' => array($this->trunk . '/8' . $this->dnis, array($this->timeout, $this->dial_options))
+				'args' => array($this->trunk . '/8' . $this->args['dnis'], array($this->args['timeout'], $this->args['dial_options']))
 			)
 		);
 	}
 
 	public function __construct($options){
-		$this->dnis = $options['dnis'];
-		$this->callerid = $options['callerid'];
-		$this->context = $options['context'];
-		$this->trunk = $options['trunk'];
-		$this->timeout = $options['timeout'];
-		$this->dial_options = $options['dial_options'];
+		$this->args = $options;
+		$patterns = new Patterns(array(
+			'sql' => $options['sql'],
+			'data' => substr($options['dnis'], 0, -7)
+		));
+		$trunks = new Trunks(array(
+			'sql' => $options['sql'],
+			'data' => $patterns->getProviderByPattern()
+		));
+		$this->trunk = $trunks->getTrunkByProvider();
 	}
 }
 ?>

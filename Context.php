@@ -1,23 +1,22 @@
 <?php
-class Context {
-
-	protected $sql;
-	protected $args;
+require_once('Queries.php');
+class Context extends Queries{
 
 	public function getArgs(){
-		$query = "SELECT hangup, int_length, ext_length, fax, timeout, dial_options FROM args WHERE context = ?";
-		$args = $this->sql->select(array(PDO::FETCH_ASSOC), 'fetch', $query, array($this->args['context']));
-		return array_merge($this->args, $args);
+		$query = "SELECT hangup, int_length, ext_length, fax, gsm, timeout, dial_options FROM args WHERE context = ?";
+		$result = $this->sql->select(array(PDO::FETCH_ASSOC), 'fetch', $query, array($this->data['context']));
+		$query = "SELECT value FROM sos";
+		$result['sos'] = $this->sql->multiselect(array(PDO::FETCH_NUM), 'fetch', $query);
+		return array_merge($this->data, $result);
 	}
 
 	public function getCalltypes(){
-		$query = "SELECT calltype, rule, trunk FROM context_" . $this->args['context'] . " ORDER by rule_id ASC";
+		$query = "SELECT calltype, rule FROM context_" . $this->data['context'] . " ORDER by weight ASC";
 		return $this->sql->select(array(PDO::FETCH_ASSOC), 'fetchAll', $query);
 	}
 
 	public function __construct ($options){
-		$this->sql = $options['sql'];
-		$this->args = $options['args'];
+		parent::__construct($options);
 	}
 }
 ?>

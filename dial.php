@@ -11,22 +11,16 @@ $mysql = new MysqlClient($sql);
 
 $contextOptions = array(
 	'sql' => $mysql,
-	'args' => $asterisk_request
+	'data' => $asterisk_request
 );
-
-$patternsOptions = array(
-	'sql' => $mysql
-);
-
 $context = new Context($contextOptions);
-$patterns = new Patterns($patternsOptions);
-$args = $context->getArgs();
 $routerOptions = array(
-	'args' => array_merge($context->getArgs(), $patterns->getSosPatterns(), $patterns->getGsmPatterns()),
+	'sql' => $mysql,
+	'args' => $context->getArgs(),
 	'calltypes' => $context->getCalltypes()
 );
+
 $router = new Router($routerOptions);
 $agi = $router->setRoute()->setAGI();
-
 var_dump($agi);
 ?>
