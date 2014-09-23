@@ -1,11 +1,6 @@
 #!/usr/local/bin/php -q
 <?php
-require_once('Router.php');
 require_once('config.inc.php');
-require_once('Context.php');
-require_once('Patterns.php');
-require_once('SetExt.php');
-require_once('data/MysqlClient.php');
 
 $mysql = new MysqlClient($sql);
 
@@ -23,4 +18,4 @@ $routerOptions = array(
 $router = new Router($routerOptions);
 $agi = $router->setRoute()->setAGI();
 var_dump($agi);
-?>
+

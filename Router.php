@@ -7,7 +7,7 @@ class Router {
 	public function setRoute(){
 		extract($this->args);
 		foreach($this->calltypes as $i){
-			if(eval("return {$i['rule']};") === TRUE){
+			if(eval("return {$i['rule']};") === true){
 				$route = "Set" . $i['calltype'];
 				return new $route($this->args);
 			}
@@ -22,4 +22,4 @@ class Router {
 		$this->calltypes = $options['calltypes'];
 	}
 }
-?>
+

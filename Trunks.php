@@ -1,5 +1,4 @@
 <?php
-require_once('Queries.php');
 class Trunks extends Queries{
 
 	public function getTrunkByProvider(){
@@ -12,4 +11,4 @@ class Trunks extends Queries{
 		parent::__construct($options);
 	}
 }
-?>
+

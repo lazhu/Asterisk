@@ -1,6 +1,4 @@
 <?php
-require_once('Patterns.php');
-require_once('Trunks.php');
 class SetExt {
 
 	protected $args;
@@ -28,4 +26,4 @@ class SetExt {
 		$this->trunk = $trunks->getTrunkByProvider();
 	}
 }
-?>
+

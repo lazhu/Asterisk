@@ -1,5 +1,4 @@
 <?php
-require_once('Queries.php');
 class Patterns extends Queries{
 
 	public function getProviderByPattern(){
@@ -12,4 +11,4 @@ class Patterns extends Queries{
 		parent::__construct($options);
 	}
 }
-?>
+

@@ -9,4 +9,4 @@ abstract class Queries {
 		$this->data = $options['data'];
 	}
 }
-?>
+

@@ -3,24 +3,14 @@ class MysqlClient {
 
 	protected $dbh;
 
-	public function select($fetchMode, $fetchMethod, $query, $bindings = NULL){
+	public function select($fetchMode, $fetchMethod, $query, $bindings = null){
 		$sth = $this->dbh->prepare($query);
 		$sth->execute($bindings);
 		call_user_func_array(array($sth, "setFetchMode"), $fetchMode);
 		return $sth->$fetchMethod();
 	}
 
-	public function multiselect($fetchMode, $fetchMethod, $query, $bindings = NULL){
-		$sth = $this->dbh->prepare($query);
-		$sth->execute($bindings);
-		call_user_func_array(array($sth, "setFetchMode"), $fetchMode);
-		while($data = $sth->$fetchMethod()){
-				$result[] = $data[0];
-		}
-		return $result;
-	}
-
-	public function insert($query, $bindings = NULL){
+	public function insert($query, $bindings = null){
 		$sth = $this->dbh->prepare($query);
 		$sth->execute($bindings);
 	}
@@ -30,4 +20,4 @@ class MysqlClient {
 		$this->dbh = new PDO($dsn, $options['user'], $options['passwd']);
 	}
 }
-?>
+
