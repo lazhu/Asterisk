@@ -1,12 +1,15 @@
 <?php
 require_once('vendor/autoload.php');
+require_once('agi/AgiCmd.php');
+require_once('agi/ExtCmd.php');
+require_once('agi/IntCmd.php');
+require_once('sql/Queries.php');
+require_once('sql/Context.php');
+require_once('sql/Patterns.php');
+require_once('sql/Trunks.php');
+require_once('sql/Extensions.php');
+require_once('sql/MysqlClient.php');
 require_once('Router.php');
-require_once('Queries.php');
-require_once('Context.php');
-require_once('Patterns.php');
-require_once('Trunks.php');
-require_once('SetExt.php');
-require_once('data/MysqlClient.php');
 
 $sql = array(
 	'host' => '223.254.254.1',
@@ -17,7 +20,7 @@ $sql = array(
 );
 
 $asterisk_request = array(
-	'dnis' => '4951234567',
+	'dnis' => '101',
 	'context' => 'test1',
 	'callerid' => 'exten1<101>',
 );

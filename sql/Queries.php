@@ -6,7 +6,9 @@ abstract class Queries {
 
 	public function __construct($options){
 		$this->sql = $options['sql'];
-		$this->data = $options['data'];
+		if (isset($options['data'])){
+			$this->data = $options['data'];
+		}
 	}
 }
 

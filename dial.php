@@ -14,8 +14,7 @@ $routerOptions = array(
 	'args' => $context->getArgs(),
 	'calltypes' => $context->getCalltypes()
 );
-
 $router = new Router($routerOptions);
-$agi = $router->setRoute()->setAGI();
+$agi = $router->setRoute()->getCmd();
 var_dump($agi);
 

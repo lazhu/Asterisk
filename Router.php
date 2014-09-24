@@ -8,7 +8,7 @@ class Router {
 		extract($this->args);
 		foreach($this->calltypes as $i){
 			if(eval("return {$i['rule']};") === true){
-				$route = "Set" . $i['calltype'];
+				$route = $i['calltype'] . "Cmd";
 				return new $route($this->args);
 			}
 		}
