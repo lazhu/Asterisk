@@ -3,11 +3,13 @@ require_once('vendor/autoload.php');
 require_once('agi/AgiCmd.php');
 require_once('agi/ExtCmd.php');
 require_once('agi/IntCmd.php');
+require_once('agi/SpdCmd.php');
 require_once('sql/Queries.php');
 require_once('sql/Context.php');
 require_once('sql/Patterns.php');
 require_once('sql/Trunks.php');
 require_once('sql/Extensions.php');
+require_once('sql/Persons.php');
 require_once('sql/MysqlClient.php');
 require_once('Router.php');
 
@@ -20,7 +22,7 @@ $sql = array(
 );
 
 $asterisk_request = array(
-	'dnis' => '101',
+	'dnis' => '301',
 	'context' => 'test1',
 	'callerid' => 'exten1<101>',
 );
