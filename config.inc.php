@@ -10,6 +10,7 @@ require_once('sql/Patterns.php');
 require_once('sql/Trunks.php');
 require_once('sql/Extensions.php');
 require_once('sql/Persons.php');
+require_once('sql/Record.php');
 require_once('sql/MysqlClient.php');
 require_once('Router.php');
 
@@ -24,6 +25,6 @@ $sql = array(
 $asterisk_request = array(
 	'dnis' => '301',
 	'context' => 'test1',
-	'callerid' => 'exten1<101>',
+	'calleridname' => 'exten1',
 );
 

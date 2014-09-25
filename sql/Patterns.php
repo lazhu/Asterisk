@@ -16,9 +16,5 @@ class Patterns extends Queries{
 		$result = $this->sql->select(array(PDO::FETCH_NUM), 'fetch', $query, array($pattern));
 		return $result[0];
 	}
-
-	public function __construct($options){
-		parent::__construct($options);
-	}
 }
 

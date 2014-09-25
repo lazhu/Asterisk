@@ -13,9 +13,5 @@ class Context extends Queries{
 		$query = "SELECT calltype, rule FROM context_" . $this->data['context'] . " ORDER by weight ASC";
 		return $this->sql->select(array(PDO::FETCH_ASSOC), 'fetchAll', $query);
 	}
-
-	public function __construct ($options){
-		parent::__construct($options);
-	}
 }
 
