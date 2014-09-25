@@ -18,9 +18,13 @@ class Router {
 	}
 
 	public function __construct($options){
-		$this->args = $options['args'];
+		$context = new Context(array(
+			'sql' => $options['sql'],
+			'data' => $options['data']
+		));
+		$this->args = $context->getArgs();
 		$this->args['sql'] = $options['sql'];
-		$this->calltypes = $options['calltypes'];
+		$this->calltypes = $context->getCalltypes();
 	}
 }
 
