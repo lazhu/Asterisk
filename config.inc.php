@@ -4,6 +4,7 @@ require_once('agi/AgiCmd.php');
 require_once('agi/ExtCmd.php');
 require_once('agi/IntCmd.php');
 require_once('agi/SpdCmd.php');
+require_once('agi/RecCmd.php');
 require_once('sql/Queries.php');
 require_once('sql/Context.php');
 require_once('sql/Patterns.php');
@@ -23,7 +24,7 @@ $sql = array(
 );
 
 $asterisk_request = array(
-	'dnis' => '301',
+	'dnis' => '9031234567',
 	'context' => 'test1',
 	'calleridname' => 'exten1',
 );

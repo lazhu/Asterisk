@@ -10,7 +10,7 @@ class Context extends Queries{
 	}
 
 	public function getCalltypes(){
-		$query = "SELECT calltype, rule FROM context_" . $this->data['context'] . " ORDER by weight ASC";
+		$query = "SELECT calltype, rule, record FROM context_" . $this->data['context'] . " ORDER by weight ASC";
 		return $this->sql->select(array(PDO::FETCH_ASSOC), 'fetchAll', $query);
 	}
 }
