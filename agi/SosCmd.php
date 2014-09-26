@@ -8,8 +8,10 @@ class SosCmd extends AgiCmd {
 			'data' => 'pstn'
 		));
 		$this->cmd = array(
-			'cmd' => 'dial',
-			'args' => array($trunks->getTrunkByProvider() . '/' . $options['dnis'], array($options['timeout'], $options['dial_options']))
+			array(
+				'cmd' => 'dial',
+				'args' => array($trunks->getTrunkByProvider() . '/' . $options['dnis'], array($options['timeout'], $options['dial_options']))
+			)
 		);
 	}
 }

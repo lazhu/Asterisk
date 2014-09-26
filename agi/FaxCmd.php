@@ -10,8 +10,10 @@ class FaxCmd extends AgiCmd {
 		$fax_path = eval("return {$fax_args['path']};");
 		$fax_file = eval("return {$fax_args['filename']};");
 		$this->cmd = array(
-			'cmd' => 'faxReceive',
-			'args' => array($fax_path . '/' . $fax_file)
+			array(
+				'cmd' => 'faxReceive',
+				'args' => array($fax_path . '/' . $fax_file)
+			)
 		);
 	}
 }
