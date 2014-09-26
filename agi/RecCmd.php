@@ -7,8 +7,8 @@ class RecCmd extends AgiCmd {
 			'data' => $options['context']
 		));
 		$record_args = $record->getRecordArgs();
-		$record_path = eval("return {$record_args['basepath']};");
-		$record_file = eval("return {$record_args['basename']};") . '-' . $options['calleridname'] . '-' . $options['dnis'];
+		$record_path = eval("return {$record_args['path']};");
+		$record_file = eval("return {$record_args['filename']};") . '-' . $options['calleridname'] . '-' . $options['dnis'];
 		$this->cmd = array(
 			array(
 				'cmd' => 'setVariable',

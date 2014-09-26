@@ -5,7 +5,10 @@ class Context extends Queries{
 		$query = "SELECT hangup, int_length, ext_length, fax, gsm, spd, timeout, dial_options FROM args WHERE context = ?";
 		$result = $this->sql->select(array(PDO::FETCH_ASSOC), 'fetch', $query, array($this->data['context']));
 		$query = "SELECT number FROM sos";
-		$result['sos'] = $this->sql->select(array(PDO::FETCH_NUM), 'fetchAll', $query);
+		$data = $this->sql->select(array(PDO::FETCH_NUM), 'fetchAll', $query);
+		foreach($data as $i){
+			$result['sos'][] = $i[0];
+		}
 		return array_merge($this->data, $result);
 	}
 
