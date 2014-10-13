@@ -1,5 +1,8 @@
 <?php
-class ExtCmd extends AgiCmd{
+namespace Asterisk\Agi;
+use Asterisk\Sql\Patterns;
+use Asterisk\Sql\Trunks;
+class External extends Command{
 
 	public function __construct($options){
 		parent::__construct($options);

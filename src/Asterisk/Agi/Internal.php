@@ -1,5 +1,7 @@
 <?php
-class IntCmd extends AgiCmd {
+namespace Asterisk\Agi;
+use Asterisk\Sql\Extensions;
+class Internal extends Command {
 
 	public function __construct($options){
 		parent::__construct($options);

@@ -1,6 +1,8 @@
 #!/usr/local/bin/php -q
 <?php
 require_once('config.inc.php');
+use Asterisk\Router;
+use Asterisk\Sql\MysqlClient;
 
 $mysql = new MysqlClient($sql);
 $routerOptions = array(

@@ -1,5 +1,7 @@
 <?php
-class SosCmd extends AgiCmd {
+namespace Asterisk\Agi;
+use Asterisk\Sql\Trunks;
+class Sos extends Command {
 
 	public function __construct($options){
 		parent::__construct($options);

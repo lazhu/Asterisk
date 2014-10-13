@@ -6,5 +6,10 @@
 	{
 		"type": "pear",
 		"url": "http://pear.apache.org/log4php/"
-	}]
+	}],
+	"autoload": {
+		"psr-4": {
+			"Asterisk\\": "src/Asterisk"
+		}
+	}
 }

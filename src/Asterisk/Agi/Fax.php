@@ -1,5 +1,7 @@
 <?php
-class FaxCmd extends AgiCmd {
+namespace Asterisk\Agi;
+use Asterisk\Sql\Fax;
+class Fax extends Command {
 
 	public function __construct($options){
 		$fax = new Fax(array(

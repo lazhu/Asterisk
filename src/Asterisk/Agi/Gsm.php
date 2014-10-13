@@ -1,5 +1,6 @@
 <?php
-class GsmCmd extends AgiCmd {
+namespace Asterisk\Agi;
+class Gsm extends Command {
 
 	public function __construct($options){
 		parent::__construct($options);

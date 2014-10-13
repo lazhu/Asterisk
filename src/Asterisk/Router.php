@@ -1,4 +1,7 @@
 <?php
+namespace Asterisk;
+use Asterisk\Sql\Context;
+use Asterisk\Agi\Call;
 class Router {
 
 	protected $args;
@@ -8,9 +11,9 @@ class Router {
 		extract($this->args);
 		foreach($this->calltypes as $i){
 			if(eval("return {$i['rule']};") === true){
-				$route = $i['calltype'] . "Cmd";
+				$this->args['calltype'] = $i['calltype'];
 				$this->args['record'] = $i['record'];
-				return new $route($this->args);
+				return Call::setRoute($this->args);
 			}
 		}
 		$this->args['dnis'] = $hangup;

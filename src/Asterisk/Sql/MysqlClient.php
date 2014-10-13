@@ -1,4 +1,5 @@
 <?php
+namespace Asterisk\Sql;
 class MysqlClient {
 
 	protected $dbh;
@@ -17,7 +18,7 @@ class MysqlClient {
 
 	public function __construct($options){
 		$dsn = 'mysql:dbname=' . $options['db'] . ';host=' . $options['host'] . ';port=' . $options['port'];
-		$this->dbh = new PDO($dsn, $options['user'], $options['passwd']);
+		$this->dbh = new \PDO($dsn, $options['user'], $options['passwd']);
 	}
 }
 

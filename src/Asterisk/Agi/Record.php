@@ -1,8 +1,10 @@
 <?php
-class RecCmd extends AgiCmd {
+namespace Asterisk\Agi;
+use Asterisk\Sql\Record as Rec;
+class Record extends Command {
 
 	public function __construct($options){
-		$record = new Record(array(
+		$record = new Rec(array(
 			'sql' => $options['sql'],
 			'data' => $options['context']
 		));

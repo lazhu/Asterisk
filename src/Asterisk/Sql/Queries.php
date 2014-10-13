@@ -1,4 +1,5 @@
 <?php
+namespace Asterisk\Sql;
 abstract class Queries {
 
 	protected $sql;

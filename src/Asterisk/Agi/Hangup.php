@@ -1,5 +1,6 @@
 <?php
-class HngCmd extends AgiCmd {
+namespace Asterisk\Agi;
+class Hangup extends Command {
 
 	public function __construct(){
 		$this->cmd = array(
