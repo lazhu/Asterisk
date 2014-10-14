@@ -1,7 +1,6 @@
 <?php
 namespace Asterisk;
 use Asterisk\Sql\Context;
-use Asterisk\Sql\Persons;
 class Router {
 
 	public function getContext($options){
@@ -22,40 +21,15 @@ class Router {
 			if(eval("return {$i['rule']};") === true){
 				$args[0]['calltype'] = $i['calltype'];
 				$args[0]['record'] = $i['record'];
-				return self::processCalltype($args[0]);
+				$route = 'Asterisk\\Agi\\' . $i['calltype'];
+				try{
+					return new $route($args[0]);
+				}
+				catch(Hangup $h){
+				}
 			}
 		}
-		$options['data']['dnis'] = $hangup;
-		return self::setRoute($options);
-	}
-
-	public function processCalltype($options){
-		if($options['calltype'] == 'Pinned'){
-			$pinned = self::processPinned($options['dnis'], $options['sql']);
-			$options['dnis'] = $pinned['dnis'];
-			$route = 'Asterisk\\Agi\\' . $pinned['calltype'];
-		}
-		else{
-			$route = 'Asterisk\\Agi\\' . $options['calltype'];
-		}
-		return new $route($options);
-	}
-
-	public function processPinned($dnis, $sql){
-		preg_match('/^[0-9]*#/', $dnis, $pin);
-		$persons = new Persons(array(
-			'sql' => $sql
-		));
-		if($persons->checkPin($pin[0])){
-			return array(
-				'dnis' => substr($dnis, strlen($pin[0])),
-				'calltype' => 'External'
-			);
-		}
-		return array (
-			'dnis' => null,
-			'calltype' => 'Hangup'
-		);
+		return new Agi\Hangup;
 	}
 }
 
