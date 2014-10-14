@@ -9,7 +9,6 @@ $routerOptions = array(
 	'sql' => $mysql,
 	'data' => $asterisk_request
 );
-$router = new Router($routerOptions);
-$agi = $router->setRoute()->getCmd();
+$agi = Router::setRoute($routerOptions)->getCmd();
 var_dump($agi);
 

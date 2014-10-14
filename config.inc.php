@@ -9,7 +9,7 @@ $sql = array(
 );
 
 $asterisk_request = array(
-	'dnis' => '9031234567',
+	'dnis' => '1234#9101234567',
 	'context' => 'test1',
 	'calleridname' => 'exten1',
 );
