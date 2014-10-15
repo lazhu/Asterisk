@@ -9,6 +9,9 @@ class SpeedDial extends External{
 			'data' => $options['dnis']
 		));
 		$options['dnis'] = $persons->getDNISBySpd();
+		if(is_null($options['dnis'])){
+			throw new \Asterisk\Hangup;
+		}
 		parent::__construct($options);
 	}
 }

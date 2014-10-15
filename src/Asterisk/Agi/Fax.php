@@ -1,10 +1,10 @@
 <?php
 namespace Asterisk\Agi;
-use Asterisk\Sql\Fax;
+use Asterisk\Sql\Fax as Data;
 class Fax extends Command {
 
 	public function __construct($options){
-		$fax = new Fax(array(
+		$fax = new Data(array(
 			'sql' => $options['sql'],
 			'data' => $options['context']
 		));

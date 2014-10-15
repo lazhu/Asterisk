@@ -26,6 +26,7 @@ class Router {
 					return new $route($args[0]);
 				}
 				catch(Hangup $h){
+					break;
 				}
 			}
 		}
